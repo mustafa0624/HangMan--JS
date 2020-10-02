@@ -5,16 +5,37 @@ const wordList = ["absurd", "awkward", "clarusway", "funny", "galaxy",
 
 let number = Math.floor(Math.random() * (wordList.length -1));
 let randomWord= wordList[number].split("")
-console.log(randomWord)
+// console.log(randomWord)
+let divList = [];
 
 function q(par){
     return document.querySelector(par);
 }
+q("body").addEventListener("keyup",(e)=>{wordControl(e) })
+selectWord();
+wordControl();
 
-function myWord(){
+function selectWord(){
+  randomWord.forEach(item=>{
+    let division = document.createElement("div");
+    division.classList.add("letter");
+    division.innerText=item;
+    q(".word").appendChild(division);
+    divList.push(division)
+    console.log(division.innerText)
     
-    
+  })
+}
 
+function wordControl(e){
+    
+    divList.forEach(a =>{
+      if(e.key === a){
+        a.style.color = "red"
+      }
+    })
+      
+    
 }
 
   
