@@ -18,10 +18,10 @@ let known = 0;
 function q(par) {
   return document.querySelector(par);
 }
-q("body").addEventListener("keyup", (e) => { wordControl(e) })
+q("body").addEventListener("keyup", collector = (e) => { wordControl(e) })
 document.querySelectorAll(".refresh").forEach((a)=>{a.addEventListener("click",()=>{location.reload() })})
 selectWord();
-wordControl();
+// wordControl();
 // addEventListener("click",() => location.reload()}
 function selectWord() {
   randomWord.forEach(item => {
@@ -56,6 +56,8 @@ function wordControl(e) {
       known++
       if(divList.length == known  ){
         q(".confirm_box_win").style.display = "block";
+        q("body").removeEventListener("keyup",collector)
+        q(".anounceWon").innerText = wordList[number]
         
         
       }
@@ -73,6 +75,7 @@ function wordControl(e) {
       if( counter == man.length ){
         q(".confirm_box_lost").style.display ="block";
         q(".anounce").innerText += wordList[number];
+        q("body").removeEventListener("keyup",collector)
         
       }
 
